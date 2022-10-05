@@ -443,7 +443,9 @@ class Xlsx extends BaseReader
 
                     $colourScheme = self::getAttributes($xmlTheme->themeElements->clrScheme);
                     $colourSchemeName = (string) $colourScheme['name'];
-                    $colourScheme = $xmlTheme->themeElements->clrScheme->children($drawingNS);
+                    if (null !== $xmlTheme->themeElements->clrScheme) {
+                        $colourScheme = $xmlTheme->themeElements->clrScheme->children($drawingNS);
+                    }
 
                     $themeColours = [];
                     foreach ($colourScheme as $k => $xmlColour) {
